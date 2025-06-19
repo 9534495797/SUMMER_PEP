@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rock Paper Scissors</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #div1 {
+      height: 100px;
+      width: 300px;
+      border: 2px dashed #555;
+      background-color: #f0faff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 8px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    #rock, #paper, #scissor {
+      background-color: #fff8dc;
+      color: #222;
+    }
+
+    #cmptr {
+      background-color: #90ee90;
+    }
+
+    #check {
+      background-color: #add8e6;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    #p{
+background-color: #90ee90;
+    }
+  </style>
+</head>
+<body>
+    <div id="p">   <p >WELCOME TO 🪨📃✂️</p></div>
+ 
+  <div id="div1">Result will appear here</div>
+  <div>
+    <button id="cmptr">Computer Choice</button>
+  </div>
+  <div id="user1">
+    <input type="text" id="user" placeholder="hey user put ur name here">
+  </div>
+  <p>click your choice</p>
+  <div>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissor">Scissor</button>
+  </div>
+  <div>
+    <button id="check">Check Winning</button>
+  </div>
+  <script >
+    let userdata;
+let computerdata;
+let username;
+const arr=['rock','paper','scissor'];
+
+const div1=document.getElementById("div1");
+const rock=document.getElementById("rock");
+const cmptr=document.getElementById("cmptr");
+const paper=document.getElementById("paper");
+const scissor=document.getElementById("scissor");
+const check=document.getElementById("check");
+const user=document.getElementById("user");
+
+user.addEventListener('input',()=>{
+    username=user.value.trim();
+})
+cmptr.addEventListener('click',()=>{
+    computerdata=arr[Math.round(Math.random()*3)];
+    console.log(computerdata);
+})
+
+rock.addEventListener('click',()=>{
+    userdata='rock';
+})
+
+paper.addEventListener('click',()=>{
+    userdata='paper';
+})
+scissor.addEventListener('click',()=>{
+    userdata='scissor';
+})
+
+
+check.addEventListener('click',()=>{
+     if (!username) {
+    div1.innerHTML = "Please enter your name first!";
+    return;
+  }
+
+    if(!userdata || !computerdata){
+        div1.innerHTML=`hey ${username} please select both the choices`;
+        return;
+    }
+    if(userdata==computerdata){
+        div1.innerHTML=`👍👍${username} its a draw! your choice was ${userdata} and computer choice was ${computerdata}`;
+    }
+    else if((userdata=='rock' && computerdata=='scissor') || (userdata=='paper' && computerdata=='rock')||(userdata=='scissor' && computerdata=='paper')){
+      
+        div1.innerHTML=`🎊🎊🎊congrats ${username} You Won! your choice was ${userdata} and computer choice was ${computerdata}`;
+    }else{
+
+        div1.innerHTML=`oops!😒${username} LOSE! SYSTEM WON your choice was ${userdata} and computer choice was ${computerdata}`;
+    }
+
+})
+
+
+  </script>
+</body>
+</html>
